@@ -206,6 +206,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Open files at same line as when last closed
 vim.api.nvim_create_autocmd('BufReadPost', {
   pattern = { '*' },
   callback = function()
