@@ -948,6 +948,7 @@ require('lazy').setup({
     },
     init = function()
       vim.keymap.set('n', '<leader>m', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file browser pane' })
+      vim.keymap.set('n', '<leader>M', '<cmd>NvimTreeFindFile<CR>', { desc = 'Open file browser pane at current file' })
     end,
   },
 
