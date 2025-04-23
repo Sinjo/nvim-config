@@ -659,9 +659,7 @@ require('lazy').setup({
         -- clangd = {},
         gopls = {
           settings = {
-            gopls = {
-              gofumpt = true,
-            },
+            gopls = {},
           },
         },
         -- pyright = {},
