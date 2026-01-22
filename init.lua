@@ -188,6 +188,24 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Send pasted-over text into named buffer ("z) rather than overwriting contents
+-- of unnamed buffer
+vim.keymap.set('x', 'p', function()
+  -- Get the register's current state
+  local reg = vim.v.register
+  local reg_content = vim.fn.getreg(reg)
+  local reg_type = vim.fn.getregtype(reg)
+
+  -- Delete selection into register z (also clobbers unnamed register)
+  vim.cmd 'normal! "zd'
+
+  -- Restore the register we want to paste from
+  vim.fn.setreg(reg, reg_content, reg_type)
+
+  -- Paste
+  vim.cmd('normal! "' .. reg .. 'P')
+end, { expr = false })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
